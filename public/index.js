@@ -45,7 +45,7 @@ form.addEventListener("submit", async (event) => {
 		throw err;
 	}
 
-	const url = search(address.value, searchEngine.value);
+	const url = search("https://www.xbox.com/en-us/play");
 
 	let wispUrl =
 		(location.protocol === "https:" ? "wss" : "ws") +
