@@ -33,8 +33,7 @@ const scramjet = new ScramjetController({
 scramjet.init();
 
 const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
-
-form.addEventListener("submit", async (event) => {
+sj-address.addEventListener("click", async (event) => {
 	event.preventDefault();
 
 	try {
