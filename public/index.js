@@ -33,9 +33,7 @@ const scramjet = new ScramjetController({
 scramjet.init();
 
 const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
-
-form.addEventListener("submit", async (event) => {
-	event.preventDefault();
+const url = search("https://www.xbox.com/en-us/play");
 
 	try {
 		await registerSW();
@@ -45,7 +43,6 @@ form.addEventListener("submit", async (event) => {
 		throw err;
 	}
 
-	const url = search("https://www.xbox.com/en-us/play");
 
 	let wispUrl =
 		(location.protocol === "https:" ? "wss" : "ws") +
@@ -61,4 +58,3 @@ form.addEventListener("submit", async (event) => {
 	frame.frame.id = "sj-frame";
 	document.body.appendChild(frame.frame);
 	frame.go(url);
-});
