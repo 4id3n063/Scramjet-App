@@ -1,9 +1,16 @@
 "use strict";
-
 /**
  * @type {HTMLFormElement}
  */
 const form = document.getElementById("sj-form");
+/**
+ * @type {HTMLInputElement}
+ */
+const address = document.getElementById("sj-address");
+/**
+ * @type {HTMLInputElement}
+ */
+const searchEngine = document.getElementById("sj-search-engine");
 /**
  * @type {HTMLParagraphElement}
  */
@@ -23,13 +30,9 @@ const scramjet = new ScramjetController({
 	},
 });
 
-
 scramjet.init();
 
 const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
-
-
-const XBOX_URL = "https://www.xbox.com/en-us/play";
 
 form.addEventListener("submit", async (event) => {
 	event.preventDefault();
@@ -39,24 +42,23 @@ form.addEventListener("submit", async (event) => {
 	} catch (err) {
 		error.textContent = "Failed to register service worker.";
 		errorCode.textContent = err.toString();
-		return;
+		throw err;
 	}
 
-	const wispUrl =
+	const url = search("https://www.xbox.com/en-us/play");
+
+	let wispUrl =
 		(location.protocol === "https:" ? "wss" : "ws") +
 		"://" +
 		location.host +
 		"/wisp/";
-
 	if ((await connection.getTransport()) !== "/libcurl/index.mjs") {
 		await connection.setTransport("/libcurl/index.mjs", [
 			{ websocket: wispUrl },
 		]);
 	}
-
 	const frame = scramjet.createFrame();
 	frame.frame.id = "sj-frame";
 	document.body.appendChild(frame.frame);
-
-	frame.go(XBOX_URL);
+	frame.go(url);
 });
