@@ -23,12 +23,13 @@ const scramjet = new ScramjetController({
 	},
 });
 
-await scramjet.init();
+
+scramjet.init();
 
 const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
 
 
-const FORCED_URL = "https://www.xbox.com/en-us/play";
+const XBOX_URL = "https://www.xbox.com/en-us/play";
 
 form.addEventListener("submit", async (event) => {
 	event.preventDefault();
@@ -38,7 +39,7 @@ form.addEventListener("submit", async (event) => {
 	} catch (err) {
 		error.textContent = "Failed to register service worker.";
 		errorCode.textContent = err.toString();
-		throw err;
+		return;
 	}
 
 	const wispUrl =
@@ -57,6 +58,5 @@ form.addEventListener("submit", async (event) => {
 	frame.frame.id = "sj-frame";
 	document.body.appendChild(frame.frame);
 
-
-	frame.go(FORCED_URL);
+	frame.go(XBOX_URL);
 });
