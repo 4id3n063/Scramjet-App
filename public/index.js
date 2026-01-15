@@ -1,20 +1,25 @@
 "use strict";
+
 /**
  * @type {HTMLFormElement}
  */
 const form = document.getElementById("sj-form");
+
 /**
- * @type {HTMLInputElement}
+ * @type {HTMLButtonElement}
  */
 const address = document.getElementById("sj-address");
+
 /**
  * @type {HTMLInputElement}
  */
 const searchEngine = document.getElementById("sj-search-engine");
+
 /**
  * @type {HTMLParagraphElement}
  */
 const error = document.getElementById("sj-error");
+
 /**
  * @type {HTMLPreElement}
  */
@@ -33,7 +38,8 @@ const scramjet = new ScramjetController({
 scramjet.init();
 
 const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
-sj-address.addEventListener("click", async (event) => {
+
+address.addEventListener("click", async (event) => {
 	event.preventDefault();
 
 	try {
@@ -46,16 +52,18 @@ sj-address.addEventListener("click", async (event) => {
 
 	const url = search("https://www.xbox.com/en-us/play");
 
-	let wispUrl =
+	const wispUrl =
 		(location.protocol === "https:" ? "wss" : "ws") +
 		"://" +
 		location.host +
 		"/wisp/";
+
 	if ((await connection.getTransport()) !== "/libcurl/index.mjs") {
 		await connection.setTransport("/libcurl/index.mjs", [
 			{ websocket: wispUrl },
 		]);
 	}
+
 	const frame = scramjet.createFrame();
 	frame.frame.id = "sj-frame";
 	document.body.appendChild(frame.frame);
