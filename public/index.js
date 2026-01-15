@@ -34,6 +34,8 @@ scramjet.init();
 
 const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
 const url = search("https://www.xbox.com/en-us/play");
+form.addEventListener("submit", async (event) => {
+	event.preventDefault();
 
 	try {
 		await registerSW();
@@ -58,3 +60,4 @@ const url = search("https://www.xbox.com/en-us/play");
 	frame.frame.id = "sj-frame";
 	document.body.appendChild(frame.frame);
 	frame.go(url);
+});
