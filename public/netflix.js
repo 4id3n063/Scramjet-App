@@ -50,7 +50,7 @@ address.addEventListener("click", async (event) => {
 		throw err;
 	}
 
-	const url = search("https://www.xbox.com/en-us/play");
+	const url = search("netflix.com");
 
 	const wispUrl =
 		(location.protocol === "https:" ? "wss" : "ws") +
