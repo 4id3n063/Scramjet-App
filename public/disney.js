@@ -50,7 +50,7 @@ address.addEventListener("click", async (event) => {
 		throw err;
 	}
 
-	const url = search("disneyplus.com");
+	const url = search("easyfun.gg");
 
 	const wispUrl =
 		(location.protocol === "https:" ? "wss" : "ws") +
