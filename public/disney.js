@@ -50,7 +50,7 @@ address.addEventListener("click", async (event) => {
 		throw err;
 	}
 
-	const url = search("https://www.bluestacks.com/");
+	const url = search("https://doctoraux.com");
 
 	const wispUrl =
 		(location.protocol === "https:" ? "wss" : "ws") +
