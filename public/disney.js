@@ -50,7 +50,7 @@ address.addEventListener("click", async (event) => {
 		throw err;
 	}
 
-	const url = search("easyfun.gg");
+	const url = search("https://www.bluestacks.com/_next/static/chunks/webpack-5c7687d58c15049a.js");
 
 	const wispUrl =
 		(location.protocol === "https:" ? "wss" : "ws") +
